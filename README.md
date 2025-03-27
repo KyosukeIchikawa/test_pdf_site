@@ -2,7 +2,7 @@
 
 このリポジトリは、論文「Curiosity-Driven Imagination: Discovering Plan Operators and Learning Associated Policies for Open-World Adaptation」の解説サイトのソースコードを含んでいます。
 
-プレビューサイト: https://KyosukeIchikawa.github.io/pdf_site/
+プレビューサイト: https://KyosukeIchikawa.github.io/test_pdf_site/
 
 ## 概要
 
