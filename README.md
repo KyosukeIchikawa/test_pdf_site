@@ -2,6 +2,8 @@
 
 このリポジトリは、論文「Curiosity-Driven Imagination: Discovering Plan Operators and Learning Associated Policies for Open-World Adaptation」の解説サイトのソースコードを含んでいます。
 
+プレビューサイト: https://kyo-learning-lab.github.io/curiosity-driven-imagination/
+
 ## 概要
 
 このプロジェクトは、複雑な研究論文の内容を視覚的に分かりやすく解説することを目的としています。Bootstrap 5を利用したレスポンシブデザインで、以下のような特徴があります：
@@ -46,15 +48,3 @@ cd test_pdf_site
 ```bash
 python -m http.server 8000
 ```
-
-## ライセンス
-
-MITライセンスの下で公開されています。
-
-## 貢献について
-
-プルリクエストや改善の提案を歓迎します。以下の点にご協力ください：
-
-- わかりやすい説明の追加
-- 視覚的な改善の提案
-- バグ修正や機能の改善
