@@ -1,0 +1,121 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="800" height="500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#3498db;stop-opacity:0.9" />
+            <stop offset="100%" style="stop-color:#2980b9;stop-opacity:0.9" />
+        </linearGradient>
+        <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#e74c3c;stop-opacity:0.9" />
+            <stop offset="100%" style="stop-color:#c0392b;stop-opacity:0.9" />
+        </linearGradient>
+        <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#2ecc71;stop-opacity:0.9" />
+            <stop offset="100%" style="stop-color:#27ae60;stop-opacity:0.9" />
+        </linearGradient>
+        <filter id="dropshadow" height="130%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+            <feOffset dx="2" dy="2" result="offsetblur"/>
+            <feComponentTransfer>
+                <feFuncA type="linear" slope="0.5"/>
+            </feComponentTransfer>
+            <feMerge> 
+                <feMergeNode/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+
+    <!-- 背景 -->
+    <rect width="800" height="500" fill="#f8f9fa" rx="10" ry="10" />
+    
+    <!-- タイトル -->
+    <text x="400" y="40" font-family="Roboto, sans-serif" font-size="24" text-anchor="middle" fill="#333">内部好奇心モジュール（ICM）のメカニズム</text>
+    
+    <!-- 環境 -->
+    <rect x="100" y="80" width="150" height="80" rx="10" ry="10" fill="#ecf0f1" filter="url(#dropshadow)" stroke="#34495e" stroke-width="2" />
+    <text x="175" y="125" font-family="Roboto, sans-serif" font-size="18" text-anchor="middle" fill="#333">環境</text>
+    
+    <!-- 状態遷移の矢印と説明 -->
+    <rect x="300" y="80" width="500" height="80" rx="10" ry="10" fill="#ecf0f1" filter="url(#dropshadow)" />
+    <text x="340" y="110" font-family="Roboto, sans-serif" font-size="16" text-anchor="start" fill="#333">状態遷移: S_t</text>
+    <text x="480" y="110" font-family="Roboto, sans-serif" font-size="16" text-anchor="start" fill="#333">行動: a_t</text>
+    <text x="620" y="110" font-family="Roboto, sans-serif" font-size="16" text-anchor="start" fill="#333">次状態: S_{t+1}</text>
+    
+    <path d="M340 130 L450 130" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+    <path d="M480 130 L590 130" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+    <path d="M620 130 L730 130" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+    
+    <!-- 矢印の先端定義 -->
+    <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+        </marker>
+    </defs>
+    
+    <!-- ICMモジュールの枠 -->
+    <rect x="50" y="180" width="700" height="280" rx="15" ry="15" fill="#f4f6f8" filter="url(#dropshadow)" stroke="#3498db" stroke-width="3" stroke-dasharray="5,5" />
+    <text x="400" y="210" font-family="Roboto, sans-serif" font-size="20" text-anchor="middle" fill="#3498db">内部好奇心モジュール（ICM）</text>
+    
+    <!-- 特徴抽出器 -->
+    <rect x="100" y="240" width="180" height="100" rx="10" ry="10" fill="url(#gradient1)" filter="url(#dropshadow)" />
+    <text x="190" y="290" font-family="Roboto, sans-serif" font-size="16" text-anchor="middle" fill="white">特徴抽出器</text>
+    
+    <!-- 順行動モデル -->
+    <rect x="310" y="240" width="180" height="100" rx="10" ry="10" fill="url(#gradient2)" filter="url(#dropshadow)" />
+    <text x="400" y="290" font-family="Roboto, sans-serif" font-size="16" text-anchor="middle" fill="white">順行動モデル</text>
+    
+    <!-- 予測次状態 -->
+    <rect x="520" y="240" width="180" height="100" rx="10" ry="10" fill="url(#gradient3)" filter="url(#dropshadow)" />
+    <text x="610" y="290" font-family="Roboto, sans-serif" font-size="16" text-anchor="middle" fill="white">予測次状態</text>
+    
+    <!-- 内部報酬計算 -->
+    <rect x="310" y="370" width="180" height="70" rx="10" ry="10" fill="#f1c40f" filter="url(#dropshadow)" />
+    <text x="400" y="405" font-family="Roboto, sans-serif" font-size="16" text-anchor="middle" fill="white">内部報酬計算</text>
+    
+    <!-- 接続矢印 -->
+    <!-- 環境から特徴抽出器への接続 -->
+    <path d="M175 160 L190 240" stroke="#333" stroke-width="2" fill="none" />
+    <polygon points="190,240 182,232 195,230" fill="#333" />
+    <text x="150" y="200" font-family="Roboto, sans-serif" font-size="12" text-anchor="middle" fill="#333">状態 S_t</text>
+    
+    <!-- 特徴抽出器から順行動モデル -->
+    <path d="M280 290 L310 290" stroke="#333" stroke-width="2" fill="none" />
+    <polygon points="310,290 300,285 300,295" fill="#333" />
+    <text x="295" y="280" font-family="Roboto, sans-serif" font-size="12" text-anchor="middle" fill="#333">φ(S_t)</text>
+    
+    <!-- 順行動モデルから予測次状態 -->
+    <path d="M490 290 L520 290" stroke="#333" stroke-width="2" fill="none" />
+    <polygon points="520,290 510,285 510,295" fill="#333" />
+    <text x="505" y="280" font-family="Roboto, sans-serif" font-size="12" text-anchor="middle" fill="#333">φ̂(S_{t+1})</text>
+    
+    <!-- 環境から予測次状態への接続 -->
+    <path d="M600 160 L610 240" stroke="#333" stroke-width="2" fill="none" />
+    <polygon points="610,240 602,232 615,230" fill="#333" />
+    <text x="630" y="200" font-family="Roboto, sans-serif" font-size="12" text-anchor="middle" fill="#333">実際の次状態 S_{t+1}</text>
+    
+    <!-- 順行動モデルへの行動入力 -->
+    <path d="M400 160 L400 240" stroke="#e74c3c" stroke-width="3" fill="none" />
+    <polygon points="400,240 395,230 405,230" fill="#e74c3c" />
+    <text x="420" y="200" font-family="Roboto, sans-serif" font-size="12" text-anchor="start" fill="#e74c3c">行動 a_t</text>
+    
+    <!-- 予測と実際の比較から内部報酬計算へ -->
+    <path d="M590 340 L400 370" stroke="#2ecc71" stroke-width="3" fill="none" />
+    <polygon points="400,370 405,360 410,362" fill="#2ecc71" />
+    <text x="500" y="360" font-family="Roboto, sans-serif" font-size="12" text-anchor="middle" fill="#2ecc71">予測誤差</text>
+    
+    <!-- 内部報酬の出力 -->
+    <path d="M400 440 L400 470" stroke="#f1c40f" stroke-width="3" fill="none" />
+    <polygon points="400,470 395,460 405,460" fill="#f1c40f" />
+    <text x="480" y="460" font-family="Roboto, sans-serif" font-size="16" text-anchor="middle" fill="#f1c40f">内部報酬 r^i_t = η||φ̂(S_{t+1}) - φ(S_{t+1})||^2</text>
+    
+    <!-- 補足説明 -->
+    <rect x="50" y="420" width="230" height="60" rx="5" ry="5" fill="white" stroke="#3498db" stroke-width="1" />
+    <text x="60" y="440" font-family="Roboto, sans-serif" font-size="12" text-anchor="start" fill="#333">φ: 状態を特徴ベクトルに変換</text>
+    <text x="60" y="460" font-family="Roboto, sans-serif" font-size="12" text-anchor="start" fill="#333">φ̂: 予測された次状態の特徴ベクトル</text>
+    <text x="60" y="480" font-family="Roboto, sans-serif" font-size="12" text-anchor="start" fill="#333">η: スケーリング係数</text>
+    
+    <!-- 重要なポイント -->
+    <rect x="50" y="490" width="700" height="2" fill="#3498db" />
+    <text x="400" y="480" font-family="Roboto, sans-serif" font-size="14" text-anchor="middle" fill="#333">予測が難しい（新規性の高い）状態ほど内部報酬が高くなり、探索が促進される</text>
+</svg>

@@ -44,6 +44,9 @@
                                 <a class="nav-link" href="#formulas">数式解説</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="#visual-explanation">図解</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="#results">結果</a>
                             </li>
                             <li class="nav-item">
@@ -469,6 +472,65 @@
             </div>
         </section>
 
+        <!-- 図解セクション（新規追加） -->
+        <section id="visual-explanation" class="py-5">
+            <div class="container">
+                <h2 class="section-title">図解：直感的な理解</h2>
+                <div class="row mb-5">
+                    <div class="col-12">
+                        <div class="content-card diagram-card">
+                            <h3>システムアーキテクチャ</h3>
+                            <p>この図は提案手法のシステムアーキテクチャとコンポーネント間の関係を示しています。内部好奇心モジュール、記号的プランニング層、ポリシー学習、報酬マシンがどのように連携して動作するかを表現しています。</p>
+                            <div class="diagram-container">
+                                <img src="assets/images/system_architecture.svg" alt="システムアーキテクチャ" class="img-fluid diagram" />
+                            </div>
+                            <p class="mt-3">エージェントは環境と相互作用し、内部好奇心モジュールが予測困難な状態への探索を促進します。記号的プランニング層では計画が生成され、ポリシー学習コンポーネントが適切な行動方針を学習します。報酬マシンは複雑なタスクを小さなステップに分割して効率的な学習をサポートします。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-5">
+                    <div class="col-12">
+                        <div class="content-card diagram-card">
+                            <h3>内部好奇心モジュール（ICM）のメカニズム</h3>
+                            <p>内部好奇心モジュール（ICM）は、エージェントが「予測が難しい」または「新規性の高い」状態に向かって探索することを促進するメカニズムです。</p>
+                            <div class="diagram-container">
+                                <img src="assets/images/icm_mechanism.svg" alt="内部好奇心モジュールの動作" class="img-fluid diagram" />
+                            </div>
+                            <p class="mt-3">ICMは状態の予測誤差を内部報酬として利用します。エージェントが予測できる（＝既知の）状態よりも、予測が困難な（＝未知の）状態に対してより高い報酬を与えることで探索を促進します。この自己動機付けにより、外部報酬が少ない環境でも効率的な探索が可能になります。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-5">
+                    <div class="col-12">
+                        <div class="content-card diagram-card">
+                            <h3>「想像上の空間」における計画立案</h3>
+                            <p>この論文の重要な貢献の一つは、実際の経験から抽象化された知識を用いて「想像上の空間」で計画を立てる能力です。</p>
+                            <div class="diagram-container">
+                                <img src="assets/images/imaginary_planning.svg" alt="想像上の空間でのプランニング" class="img-fluid diagram" />
+                            </div>
+                            <p class="mt-3">左側は物理的な環境（実際の空間）を表し、右側は記号的なプランニングが行われる想像上の空間を表しています。エージェントは過去の経験（リンゴやオレンジを掴む）から一般化された知識を抽出し、それを未経験のオブジェクト（バナナ）に適用することができます。これにより、実際に試す前に「想像上」で計画を生成し、効率的に新しいタスクに適応できます。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="content-card diagram-card">
+                            <h3>手法の比較</h3>
+                            <p>この図は提案手法と既存手法の比較を示しています。</p>
+                            <div class="diagram-container">
+                                <img src="assets/images/comparison.svg" alt="手法の比較" class="img-fluid diagram" />
+                            </div>
+                            <p class="mt-3">純粋な強化学習（RL）は柔軟性が高いものの、多量のデータを必要とし収束が遅いという欠点があります。純粋な記号的計画は解釈性が高く効率的ですが、環境変化に弱いという特性があります。従来のハイブリッド手法は両者の長所を組み合わせていますが、希少報酬環境では効率が悪くなります。</p>
+                            <p>本論文の提案手法「好奇心駆動型想像力」は、内部好奇心による探索促進、想像上の空間での計画立案、報酬マシンによる効率的学習を組み合わせることで、これまでの手法よりも優れた適応能力と学習効率を実現しています。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- 結果 -->
         <section id="results" class="py-5">
             <div class="container">
@@ -527,8 +589,7 @@
                                     <tr>
                                         <td>提案手法</td>
                                         <td><span class="text-success">速い</span></td>
-                                        <td>92%</td>
-                                        <td>高</td>
+                                        <td>92%</                                        <td>高</td>
                                     </tr>
                                     <tr>
                                         <td>従来のハイブリッド手法</td>

@@ -1,0 +1,151 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="800" height="550" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#3498db;stop-opacity:0.9" />
+            <stop offset="100%" style="stop-color:#2980b9;stop-opacity:0.9" />
+        </linearGradient>
+        <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#e74c3c;stop-opacity:0.9" />
+            <stop offset="100%" style="stop-color:#c0392b;stop-opacity:0.9" />
+        </linearGradient>
+        <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#2ecc71;stop-opacity:0.9" />
+            <stop offset="100%" style="stop-color:#27ae60;stop-opacity:0.9" />
+        </linearGradient>
+        <linearGradient id="gradient4" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#f1c40f;stop-opacity:0.9" />
+            <stop offset="100%" style="stop-color:#f39c12;stop-opacity:0.9" />
+        </linearGradient>
+        <linearGradient id="gradient5" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#9b59b6;stop-opacity:0.9" />
+            <stop offset="100%" style="stop-color:#8e44ad;stop-opacity:0.9" />
+        </linearGradient>
+        <filter id="dropshadow" height="130%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+            <feOffset dx="2" dy="2" result="offsetblur"/>
+            <feComponentTransfer>
+                <feFuncA type="linear" slope="0.5"/>
+            </feComponentTransfer>
+            <feMerge> 
+                <feMergeNode/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+
+    <!-- 背景 -->
+    <rect width="800" height="550" fill="#f8f9fa" rx="10" ry="10" />
+    <text x="400" y="40" font-family="Roboto, sans-serif" font-size="24" text-anchor="middle" fill="#333">システムアーキテクチャ</text>
+
+    <!-- 環境ブロック -->
+    <rect x="50" y="80" width="700" height="80" rx="10" ry="10" fill="#ecf0f1" filter="url(#dropshadow)" />
+    <text x="400" y="125" font-family="Roboto, sans-serif" font-size="20" text-anchor="middle" fill="#333">環境 (Environment)</text>
+
+    <!-- エージェントの外枠 -->
+    <rect x="50" y="180" width="700" height="340" rx="10" ry="10" fill="#ecf0f1" filter="url(#dropshadow)" />
+    <text x="400" y="210" font-family="Roboto, sans-serif" font-size="20" text-anchor="middle" fill="#333">エージェント (Agent)</text>
+
+    <!-- 内部好奇心モジュール -->
+    <rect x="80" y="240" width="250" height="120" rx="8" ry="8" fill="url(#gradient1)" filter="url(#dropshadow)" />
+    <text x="205" y="270" font-family="Roboto, sans-serif" font-size="16" text-anchor="middle" fill="white">内部好奇心モジュール (ICM)</text>
+    <rect x="100" y="285" width="100" height="60" rx="5" ry="5" fill="white" stroke="#3498db" stroke-width="2" />
+    <text x="150" y="315" font-family="Roboto, sans-serif" font-size="12" text-anchor="middle" fill="#333">特徴エンコーダー</text>
+    <rect x="210" y="285" width="100" height="60" rx="5" ry="5" fill="white" stroke="#3498db" stroke-width="2" />
+    <text x="260" y="315" font-family="Roboto, sans-serif" font-size="12" text-anchor="middle" fill="#333">予測モデル</text>
+
+    <!-- 記号的プランニング層 -->
+    <rect x="80" y="380" width="250" height="120" rx="8" ry="8" fill="url(#gradient4)" filter="url(#dropshadow)" />
+    <text x="205" y="410" font-family="Roboto, sans-serif" font-size="16" text-anchor="middle" fill="#333">記号的プランニング層</text>
+    <rect x="100" y="425" width="100" height="60" rx="5" ry="5" fill="white" stroke="#f39c12" stroke-width="2" />
+    <text x="150" y="455" font-family="Roboto, sans-serif" font-size="12" text-anchor="middle" fill="#333">オペレータ抽出</text>
+    <rect x="210" y="425" width="100" height="60" rx="5" ry="5" fill="white" stroke="#f39c12" stroke-width="2" />
+    <text x="260" y="455" font-family="Roboto, sans-serif" font-size="12" text-anchor="middle" fill="#333">計画生成</text>
+
+    <!-- ポリシー学習 -->
+    <rect x="350" y="240" width="160" height="120" rx="8" ry="8" fill="url(#gradient2)" filter="url(#dropshadow)" />
+    <text x="430" y="290" font-family="Roboto, sans-serif" font-size="16" text-anchor="middle" fill="white">ポリシー学習</text>
+    <text x="430" y="320" font-family="Roboto, sans-serif" font-size="14" text-anchor="middle" fill="white">Actor-Critic</text>
+
+    <!-- 報酬マシン -->
+    <rect x="530" y="240" width="200" height="120" rx="8" ry="8" fill="url(#gradient3)" filter="url(#dropshadow)" />
+    <text x="630" y="270" font-family="Roboto, sans-serif" font-size="16" text-anchor="middle" fill="white">報酬マシン</text>
+    <rect x="550" y="285" width="160" height="60" rx="5" ry="5" fill="white" stroke="#27ae60" stroke-width="2" />
+    <text x="630" y="315" font-family="Roboto, sans-serif" font-size="12" text-anchor="middle" fill="#333">LTL式から生成された</text>
+    <text x="630" y="335" font-family="Roboto, sans-serif" font-size="12" text-anchor="middle" fill="#333">報酬信号</text>
+
+    <!-- 想像上の空間 -->
+    <rect x="350" y="380" width="380" height="120" rx="8" ry="8" fill="url(#gradient5)" filter="url(#dropshadow)" />
+    <text x="540" y="410" font-family="Roboto, sans-serif" font-size="16" text-anchor="middle" fill="white">想像上の空間</text>
+    <rect x="370" y="425" width="160" height="60" rx="5" ry="5" fill="white" stroke="#8e44ad" stroke-width="2" />
+    <text x="450" y="455" font-family="Roboto, sans-serif" font-size="12" text-anchor="middle" fill="#333">一般化された知識</text>
+    <rect x="550" y="425" width="160" height="60" rx="5" ry="5" fill="white" stroke="#8e44ad" stroke-width="2" />
+    <text x="630" y="455" font-family="Roboto, sans-serif" font-size="12" text-anchor="middle" fill="#333">仮想シミュレーション</text>
+
+    <!-- 接続線 - 環境との相互作用 -->
+    <path d="M400 160 L400 240" stroke="#333" stroke-width="2" fill="none" />
+    <polygon points="400,240 395,230 405,230" fill="#333" />
+    <path d="M480 160 L530 240" stroke="#333" stroke-width="2" fill="none" />
+    <polygon points="530,240 520,235 525,225" fill="#333" />
+    <path d="M320 160 L205 240" stroke="#333" stroke-width="2" fill="none" />
+    <polygon points="205,240 210,230 215,225" fill="#333" />
+    
+    <!-- ICMからポリシー学習への接続 -->
+    <path d="M330 300 L350 300" stroke="#333" stroke-width="2" fill="none" />
+    <polygon points="350,300 340,295 340,305" fill="#333" />
+    
+    <!-- 記号的プランニングから想像上の空間への接続 -->
+    <path d="M330 440 L350 440" stroke="#333" stroke-width="2" fill="none" />
+    <polygon points="350,440 340,435 340,445" fill="#333" />
+    
+    <!-- 想像上の空間から報酬マシンへの接続 -->
+    <path d="M630 380 L630 360" stroke="#333" stroke-width="2" fill="none" />
+    <polygon points="630,360 625,370 635,370" fill="#333" />
+    
+    <!-- 報酬マシンからポリシー学習への接続 -->
+    <path d="M530 300 L510 300" stroke="#333" stroke-width="2" fill="none" />
+    <polygon points="510,300 520,295 520,305" fill="#333" />
+    
+    <!-- ICMから記号的プランニング層への接続 -->
+    <path d="M205 360 L205 380" stroke="#333" stroke-width="2" fill="none" />
+    <polygon points="205,380 200,370 210,370" fill="#333" />
+    
+    <!-- ポリシー学習から環境への接続（アクション） -->
+    <path d="M430 240 L430 160" stroke="#e74c3c" stroke-width="3" fill="none" />
+    <polygon points="430,160 425,170 435,170" fill="#e74c3c" />
+    <text x="445" y="200" font-family="Roboto, sans-serif" font-size="12" text-anchor="start" fill="#e74c3c">アクション</text>
+    
+    <!-- 環境からICMへの接続（観測） -->
+    <path d="M175 160 L175 240" stroke="#3498db" stroke-width="3" fill="none" />
+    <polygon points="175,240 170,230 180,230" fill="#3498db" />
+    <text x="135" y="200" font-family="Roboto, sans-serif" font-size="12" text-anchor="end" fill="#3498db">観測</text>
+    
+    <!-- 報酬マシンからICMへの接続（内部報酬） -->
+    <path d="M540 240 C430 210 330 210 280 240" stroke="#2ecc71" stroke-width="3" fill="none" stroke-dasharray="5,5" />
+    <polygon points="280,240 290,235 288,245" fill="#2ecc71" />
+    <text x="420" y="210" font-family="Roboto, sans-serif" font-size="12" text-anchor="middle" fill="#2ecc71">内部報酬</text>
+    
+    <!-- 特殊接続 - ICMと想像上の空間の相互作用 -->
+    <path d="M250 360 C350 350 450 370 370 425" stroke="#9b59b6" stroke-width="3" fill="none" stroke-dasharray="5,5" />
+    <polygon points="370,425 380,420 378,410" fill="#9b59b6" />
+    <text x="350" y="375" font-family="Roboto, sans-serif" font-size="12" text-anchor="middle" fill="#9b59b6">探索知識</text>
+    
+    <!-- 説明テキスト -->
+    <text x="400" y="520" font-family="Roboto, sans-serif" font-size="16" text-anchor="middle" fill="#333">「内部好奇心、記号的計画、想像上の空間が連携して効率的な学習と適応を実現」</text>
+    
+    <!-- 凡例 -->
+    <rect x="100" y="500" width="15" height="2" fill="#333" />
+    <text x="125" y="505" font-family="Roboto, sans-serif" font-size="10" text-anchor="start" fill="#333">情報の流れ</text>
+    
+    <rect x="200" y="500" width="15" height="3" fill="#e74c3c" />
+    <text x="225" y="505" font-family="Roboto, sans-serif" font-size="10" text-anchor="start" fill="#333">アクション</text>
+    
+    <rect x="300" y="500" width="15" height="3" fill="#3498db" />
+    <text x="325" y="505" font-family="Roboto, sans-serif" font-size="10" text-anchor="start" fill="#333">観測</text>
+    
+    <rect x="400" y="500" width="15" height="3" fill="#2ecc71" stroke-dasharray="5,5" />
+    <text x="425" y="505" font-family="Roboto, sans-serif" font-size="10" text-anchor="start" fill="#333">報酬信号</text>
+    
+    <rect x="500" y="500" width="15" height="3" fill="#9b59b6" stroke-dasharray="5,5" />
+    <text x="525" y="505" font-family="Roboto, sans-serif" font-size="10" text-anchor="start" fill="#333">知識転移</text>
+</svg>

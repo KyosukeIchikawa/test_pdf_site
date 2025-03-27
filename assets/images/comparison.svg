@@ -1,0 +1,91 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="800" height="500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#3498db;stop-opacity:0.9" />
+            <stop offset="100%" style="stop-color:#2980b9;stop-opacity:0.9" />
+        </linearGradient>
+        <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#e74c3c;stop-opacity:0.9" />
+            <stop offset="100%" style="stop-color:#c0392b;stop-opacity:0.9" />
+        </linearGradient>
+        <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#2ecc71;stop-opacity:0.9" />
+            <stop offset="100%" style="stop-color:#27ae60;stop-opacity:0.9" />
+        </linearGradient>
+        <linearGradient id="gradient4" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#f1c40f;stop-opacity:0.9" />
+            <stop offset="100%" style="stop-color:#f39c12;stop-opacity:0.9" />
+        </linearGradient>
+        <filter id="dropshadow" height="130%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+            <feOffset dx="2" dy="2" result="offsetblur"/>
+            <feComponentTransfer>
+                <feFuncA type="linear" slope="0.5"/>
+            </feComponentTransfer>
+            <feMerge> 
+                <feMergeNode/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+
+    <!-- 背景 -->
+    <rect width="800" height="500" fill="#f8f9fa" rx="10" ry="10" />
+    <text x="400" y="40" font-family="Roboto, sans-serif" font-size="24" text-anchor="middle" fill="#333">手法の比較：提案手法とベースライン</text>
+
+    <!-- 2x2グリッド構造 -->
+    <!-- 従来の純粋なRL -->
+    <rect x="50" y="80" width="340" height="180" rx="10" ry="10" fill="#ecf0f1" filter="url(#dropshadow)" />
+    <text x="220" y="110" font-family="Roboto, sans-serif" font-size="18" text-anchor="middle" fill="#333">純粋な強化学習 (RL)</text>
+    <rect x="70" y="130" width="300" height="110" rx="8" ry="8" fill="white" stroke="#333" stroke-width="1" />
+    <text x="220" y="160" font-family="Roboto, sans-serif" font-size="16" text-anchor="middle" fill="#333">特徴:</text>
+    <text x="220" y="185" font-family="Roboto, sans-serif" font-size="14" text-anchor="middle" fill="#333">• 柔軟性が高い</text>
+    <text x="220" y="210" font-family="Roboto, sans-serif" font-size="14" text-anchor="middle" fill="#333">• 膨大な学習データが必要</text>
+    <text x="220" y="235" font-family="Roboto, sans-serif" font-size="14" text-anchor="middle" fill="#333">• 収束が遅い</text>
+    
+    <!-- 純粋な記号的計画 -->
+    <rect x="410" y="80" width="340" height="180" rx="10" ry="10" fill="#ecf0f1" filter="url(#dropshadow)" />
+    <text x="580" y="110" font-family="Roboto, sans-serif" font-size="18" text-anchor="middle" fill="#333">純粋な記号的計画</text>
+    <rect x="430" y="130" width="300" height="110" rx="8" ry="8" fill="white" stroke="#333" stroke-width="1" />
+    <text x="580" y="160" font-family="Roboto, sans-serif" font-size="16" text-anchor="middle" fill="#333">特徴:</text>
+    <text x="580" y="185" font-family="Roboto, sans-serif" font-size="14" text-anchor="middle" fill="#333">• 解釈性が高い</text>
+    <text x="580" y="210" font-family="Roboto, sans-serif" font-size="14" text-anchor="middle" fill="#333">• 効率的な計画生成</text>
+    <text x="580" y="235" font-family="Roboto, sans-serif" font-size="14" text-anchor="middle" fill="#333">• 環境変化に弱い</text>
+    
+    <!-- 従来のハイブリッド手法 -->
+    <rect x="50" y="280" width="340" height="180" rx="10" ry="10" fill="#ecf0f1" filter="url(#dropshadow)" />
+    <text x="220" y="310" font-family="Roboto, sans-serif" font-size="18" text-anchor="middle" fill="#333">従来のハイブリッド手法</text>
+    <rect x="70" y="330" width="300" height="110" rx="8" ry="8" fill="white" stroke="#333" stroke-width="1" />
+    <text x="220" y="360" font-family="Roboto, sans-serif" font-size="16" text-anchor="middle" fill="#333">特徴:</text>
+    <text x="220" y="385" font-family="Roboto, sans-serif" font-size="14" text-anchor="middle" fill="#333">• 計画と学習の統合</text>
+    <text x="220" y="410" font-family="Roboto, sans-serif" font-size="14" text-anchor="middle" fill="#333">• 中程度の適応能力</text>
+    <text x="220" y="435" font-family="Roboto, sans-serif" font-size="14" text-anchor="middle" fill="#333">• 希少報酬に弱い</text>
+    
+    <!-- 提案手法 -->
+    <rect x="410" y="280" width="340" height="180" rx="10" ry="10" fill="url(#gradient3)" filter="url(#dropshadow)" />
+    <text x="580" y="310" font-family="Roboto, sans-serif" font-size="18" text-anchor="middle" fill="white">提案手法: 好奇心駆動型想像力</text>
+    <rect x="430" y="330" width="300" height="110" rx="8" ry="8" fill="white" stroke="#333" stroke-width="1" />
+    <text x="580" y="360" font-family="Roboto, sans-serif" font-size="16" text-anchor="middle" fill="#333">特徴:</text>
+    <text x="580" y="385" font-family="Roboto, sans-serif" font-size="14" text-anchor="middle" fill="#333">• 内部好奇心による探索促進</text>
+    <text x="580" y="410" font-family="Roboto, sans-serif" font-size="14" text-anchor="middle" fill="#333">• 「想像上の空間」での計画</text>
+    <text x="580" y="435" font-family="Roboto, sans-serif" font-size="14" text-anchor="middle" fill="#333">• 報酬マシンによる効率的学習</text>
+
+    <!-- 性能指標の矢印 -->
+    <!-- 適応速度の矢印 -->
+    <text x="125" y="470" font-family="Roboto, sans-serif" font-size="14" text-anchor="middle" fill="#333" transform="rotate(-30 125,470)">適応速度</text>
+    <path d="M150 470 L650 470" stroke="#333" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+    <polygon points="650,470 640,465 640,475" fill="#333" />
+    
+    <!-- 収束速度のマーカー -->
+    <circle cx="200" cy="470" r="6" fill="#e74c3c" />
+    <circle cx="350" cy="470" r="6" fill="#f39c12" />
+    <circle cx="500" cy="470" r="6" fill="#3498db" />
+    <circle cx="630" cy="470" r="8" fill="#2ecc71" />
+    
+    <!-- 手法ラベル -->
+    <text x="200" y="490" font-family="Roboto, sans-serif" font-size="12" text-anchor="middle" fill="#333">純粋なRL</text>
+    <text x="350" y="490" font-family="Roboto, sans-serif" font-size="12" text-anchor="middle" fill="#333">純粋な記号的計画</text>
+    <text x="500" y="490" font-family="Roboto, sans-serif" font-size="12" text-anchor="middle" fill="#333">従来のハイブリッド</text>
+    <text x="630" y="490" font-family="Roboto, sans-serif" font-size="12" text-anchor="middle" fill="#333">提案手法</text>
+</svg>
