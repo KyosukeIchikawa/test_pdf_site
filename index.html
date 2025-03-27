@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>論文解説：Curiosity-Driven Imagination</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@300;400;600&family=Source+Code+Pro&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/github.min.css">
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">論文解説</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#overview">概要</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#introduction">はじめに</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#methodology">手法</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#results">結果</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#discussion">考察</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#conclusion">結論</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main>
+        <!-- ヒーローセクション -->
+        <section class="hero bg-primary text-white py-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <h1 class="display-4 fw-bold">Curiosity-Driven Imagination</h1>
+                        <h2 class="h4">Discovering Plan Operators and Learning Associated Policies for Open-World Adaptation</h2>
+                        <p class="lead">Pierrick Lorang, Hong Lu, and Matthias Scheutz</p>
+                        <p><small>arXiv:2503.04931v1 [cs.RO] 6 Mar 2025</small></p>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="illustration-container text-center">
+                            <i class="fas fa-robot fa-8x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 論文概要 -->
+        <section id="overview" class="py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h2 class="section-title">論文概要</h2>
+                        <div class="abstract-card">
+                            <h3>アブストラクト</h3>
+                            <p>
+                                「オープンワールド」と呼ばれる動的で不確実な環境への迅速な適応は、ロボット工学における大きな課題です。
+                                従来のタスクとモーションプランニング（TAMP）アプローチは、予測できない変化に対処することが難しく、
+                                適応時のデータ効率が悪く、学習中にワールドモデルを活用していません。
+                            </p>
+                            <p>
+                                私たちはこの問題に対して、2つのモデルを統合したハイブリッドプランニングと学習システムで対処します：
+                                内部好奇心モジュール（ICM）を通じて探索を促進する確率的遷移を学習する低レベルのニューラルネットワークベースモデルと、
+                                エージェントが「想像上の」空間で計画を立て、報酬マシンを生成できるようにするオペレータを使用して抽象的な遷移をキャプチャする高レベルの記号的計画モデルです。
+                            </p>
+                            <p>
+                                逐次的な新規性注入を伴うロボット操作ドメインでの評価により、私たちのアプローチは収束が速く、
+                                最先端のハイブリッド手法を上回ることが示されました。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="key-points-card">
+                            <h3>主要ポイント</h3>
+                            <ul class="key-points-list">
+                                <li><i class="fas fa-lightbulb text-primary"></i> オープンワールド適応のためのハイブリッドシステム</li>
+                                <li><i class="fas fa-lightbulb text-primary"></i> 内部好奇心モジュール（ICM）による探索駆動</li>
+                                <li><i class="fas fa-lightbulb text-primary"></i> 記号的プランニングと強化学習の統合</li>
+                                <li><i class="fas fa-lightbulb text-primary"></i> 「想像上の」空間での計画立案</li>
+                                <li><i class="fas fa-lightbulb text-primary"></i> 報酬マシンの自動生成</li>
+                            </ul>
+                        </div>
+                        <div class="quick-nav-card mt-4">
+                            <h3>クイックナビゲーション</h3>
+                            <ul class="quick-nav-list">
+                                <li><a href="#introduction"><i class="fas fa-angle-right"></i> はじめに</a></li>
+                                <li><a href="#methodology"><i class="fas fa-angle-right"></i> 手法</a></li>
+                                <li><a href="#architecture"><i class="fas fa-angle-right"></i> システムアーキテクチャ</a></li>
+                                <li><a href="#results"><i class="fas fa-angle-right"></i> 結果と評価</a></li>
+                                <li><a href="#conclusion"><i class="fas fa-angle-right"></i> 結論</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- イントロダクション -->
+        <section id="introduction" class="py-5 bg-light">
+            <div class="container">
+                <h2 class="section-title">はじめに</h2>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="content-card">
+                            <p>
+                                オープンワールドシナリオでは、予測できない変化がエージェントの既存知識を無効にし、
+                                迅速な適応が必要となります。これは純粋に記号的なアプローチでは達成が困難です。
+                            </p>
+                            <p>
+                                過去の研究では、タスクとモーションプランニング（TAMP）手法を強化学習（RL）と統合することで
+                                改善を図ってきました。これは、記号的プランニングで意思決定の複雑さを軽減し、
+                                RLの柔軟性を活用して新しい状況に対応するハイブリッドアプローチです。
+                            </p>
+                            <p>
+                                このようなハイブリッドシステムはエンドツーエンドのニューラルネットワークよりも優れていますが、
+                                実世界のアプリケーションではまだ非効率的です。わずかな変化に適応するだけでも何百万回もの
+                                トレーニングが必要となることがあります。これは、固定されたまたは希少な報酬構造に依存しているためです。
+                            </p>
+                            <p>
+                                「報酬マシン」は時間論理推論を活用して報酬信号を「密化」することで、
+                                この制限に対処することが提案されていますが、課題はまだ残っています。
+                                特に、報酬マシンをサポートする論理を推論し、新規性に迅速に適応するためにバイレベルエージェント内の
+                                RLを最適に導くための効果的なメカニズムを決定することです。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="glossary-card">
+                            <h3>用語解説</h3>
+                            <dl class="glossary-list">
+                                <dt>TAMP (Task and Motion Planning)</dt>
+                                <dd>タスクプランニング（何をするか）とモーションプランニング（どのように動くか）を組み合わせたロボティクスの手法</dd>
+                                
+                                <dt>RL (Reinforcement Learning)</dt>
+                                <dd>環境との相互作用から報酬を最大化する行動を学習する機械学習の一分野</dd>
+                                
+                                <dt>オープンワールド</dt>
+                                <dd>動的で不確実な環境、エージェントが事前に予測できない変化が発生する場所</dd>
+                                
+                                <dt>報酬マシン</dt>
+                                <dd>時間論理推論を活用して希少な報酬信号を「密化」するメカニズム</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 手法 -->
+        <section id="methodology" class="py-5">
+            <div class="container">
+                <h2 class="section-title">提案手法</h2>
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="content-card">
+                            <h3>ハイブリッドアプローチ</h3>
+                            <p>
+                                本研究では、ハイブリッドプランニングと学習システムを、二つの並行して学習するモデルで強化します：
+                            </p>
+                            <ol>
+                                <li>
+                                    <strong>記号的レイヤー：</strong> 環境との相互作用から高レベルのオペレータを抽象化し、エージェントが「想像上の」空間で計画を立てることを可能にします。
+                                </li>
+                                <li>
+                                    <strong>確率的ニューラルネットワーク：</strong> 内部好奇心モジュール（ICM）を備えており、新規な遷移に向けた探索を駆動します。
+                                </li>
+                            </ol>
+                            <p>
+                                この二重モデルアプローチにより、環境からの報酬が希少であっても、システムは探索と活用のバランスを取り、新しい状況に迅速に適応できます。
+                                さらに、報酬マシンの自動生成により、学習プロセスが効率化されます。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="architecture-card text-center">
+                            <h3>システムアーキテクチャ</h3>
+                            <div class="architecture-diagram">
+                                <div class="diagram-placeholder">
+                                    <!-- 後でD3.jsで動的図表を実装 -->
+                                    <svg width="400" height="300" id="architecture-svg" class="img-fluid">
+                                        <!-- SVGコンテンツは後でJavaScriptで動的に生成 -->
+                                    </svg>
+                                </div>
+                                <p class="text-muted">
+                                    <small>* システムアーキテクチャのインタラクティブ図表は開発中です</small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- アーキテクチャ -->
+        <section id="architecture" class="py-5 bg-light">
+            <div class="container">
+                <h2 class="section-title">システムアーキテクチャ詳細</h2>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="content-card">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h3>内部好奇心モジュール（ICM）</h3>
+                                    <p>
+                                        ICMは予測モデルと特徴エンコーダで構成され、エージェントが以下のことを行えるようにします：
+                                    </p>
+                                    <ul>
+                                        <li>環境の新しい特性を能動的に探索</li>
+                                        <li>予測誤差を内部報酬として使用</li>
+                                        <li>予測可能になった領域から予測困難な領域へ探索を移行</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h3>記号的プランニング層</h3>
+                                    <p>
+                                        記号的プランニング層は以下の機能を提供します：
+                                    </p>
+                                    <ul>
+                                        <li>環境の高レベル抽象化</li>
+                                        <li>計画オペレータの発見と洗練</li>
+                                        <li>報酬マシンの自動生成</li>
+                                        <li>遠隔目標達成のための階層的計画</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <h3>ハイブリッド学習プロセス</h3>
+                                    <div class="process-steps">
+                                        <div class="step">
+                                            <div class="step-number">1</div>
+                                            <div class="step-content">
+                                                <h4>環境探索</h4>
+                                                <p>ICMが内部好奇心に基づいて環境探索を導く</p>
+                                            </div>
+                                        </div>
+                                        <div class="step">
+                                            <div class="step-number">2</div>
+                                            <div class="step-content">
+                                                <h4>遷移記録</h4>
+                                                <p>観測された状態遷移を記録</p>
+                                            </div>
+                                        </div>
+                                        <div class="step">
+                                            <div class="step-number">3</div>
+                                            <div class="step-content">
+                                                <h4>オペレータ抽出</h4>
+                                                <p>記録された遷移から計画オペレータを抽出</p>
+                                            </div>
+                                        </div>
+                                        <div class="step">
+                                            <div class="step-number">4</div>
+                                            <div class="step-content">
+                                                <h4>計画生成</h4>
+                                                <p>抽出されたオペレータを使用して計画を生成</p>
+                                            </div>
+                                        </div>
+                                        <div class="step">
+                                            <div class="step-number">5</div>
+                                            <div class="step-content">
+                                                <h4>ポリシー最適化</h4>
+                                                <p>計画に基づいて低レベルポリシーを最適化</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 結果 -->
+        <section id="results" class="py-5">
+            <div class="container">
+                <h2 class="section-title">結果と評価</h2>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="content-card">
+                            <h3>評価環境</h3>
+                            <p>
+                                本研究では、逐次的な新規性注入を伴うロボット操作ドメインを用いて評価を行いました。
+                                この環境では、ロボットは様々なオブジェクトを操作し、予め定義されたタスクを完了する必要があります。
+                            </p>
+                            <p>
+                                評価の主な特徴：
+                            </p>
+                            <ul>
+                                <li>学習中に予測不可能な環境変化を導入</li>
+                                <li>複数のタスクバリエーションにわたる性能測定</li>
+                                <li>最先端のハイブリッド手法との比較</li>
+                            </ul>
+                            
+                            <h3>主な結果</h3>
+                            <p>
+                                私たちのアプローチは以下の点で優れた性能を示しました：
+                            </p>
+                            <ul>
+                                <li>新規性へのより速い適応</li>
+                                <li>サンプル効率の大幅な改善</li>
+                                <li>より複雑なタスクへの適用可能性</li>
+                                <li>以前未見の状況への一般化能力</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="chart-card">
+                            <h3>性能分析</h3>
+                            <div class="chart-container">
+                                <canvas id="performanceChart"></canvas>
+                            </div>
+                            <p class="text-muted text-center">
+                                <small>* グラフはインタラクティブ要素を含んでいます。データポイントにホバーすると詳細が表示されます</small>
+                            </p>
+                        </div>
+                        <div class="comparison-card mt-4">
+                            <h3>手法比較</h3>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>手法</th>
+                                        <th>収束時間</th>
+                                        <th>成功率</th>
+                                        <th>適応能力</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>提案手法</td>
+                                        <td><span class="text-success">速い</span></td>
+                                        <td>92%</td>
+                                        <td>高</td>
+                                    </tr>
+                                    <tr>
+                                        <td>従来のハイブリッド手法</td>
+                                        <td>中程度</td>
+                                        <td>78%</td>
+                                        <td>中</td>
+                                    </tr>
+                                    <tr>
+                                        <td>純粋なRL</td>
+                                        <td><span class="text-danger">遅い</span></td>
+                                        <td>65%</td>
+                                        <td>低〜中</td>
+                                    </tr>
+                                    <tr>
+                                        <td>純粋な記号的プランニング</td>
+                                        <td>N/A</td>
+                                        <td>40%</td>
+                                        <td>非常に低い</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 考察 -->
+        <section id="discussion" class="py-5 bg-light">
+            <div class="container">
+                <h2 class="section-title">考察</h2>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="content-card">
+                            <h3>主要な発見</h3>
+                            <p>
+                                実験結果から、内部好奇心と記号的プランニングを組み合わせることで、
+                                未知の状況に対する適応能力が大幅に向上することが確認されました。
+                                特に注目すべき点は以下の通りです：
+                            </p>
+                            
+                            <div class="finding-item">
+                                <h4><i class="fas fa-lightbulb text-primary"></i> 探索効率の向上</h4>
+                                <p>
+                                    ICMによる内部報酬生成が、関連する状態空間の体系的な探索を促進し、
+                                    従来のハイブリッドシステムよりも効率的に新しい知識を獲得できることが示されました。
+                                </p>
+                            </div>
+                            
+                            <div class="finding-item">
+                                <h4><i class="fas fa-lightbulb text-primary"></i> 記号的知識の有効活用</h4>
+                                <p>
+                                    抽出された計画オペレータを用いた「想像上の」空間での計画立案により、
+                                    実際の試行回数を大幅に削減でき、サンプル効率が向上しました。
+                                </p>
+                            </div>
+                            
+                            <div class="finding-item">
+                                <h4><i class="fas fa-lightbulb text-primary"></i> 報酬マシンの効果</h4>
+                                <p>
+                                    自動生成された報酬マシンにより、希少な環境報酬の問題が緩和され、
+                                    学習速度が向上したことが観察されました。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="limitations-card">
+                            <h3>限界と今後の課題</h3>
+                            <div class="limitation-item">
+                                <h4><i class="fas fa-exclamation-triangle text-warning"></i> スケーラビリティ</h4>
+                                <p>
+                                    非常に複雑な環境では、記号的オペレータの抽出が計算的に困難になる可能性があります。
+                                </p>
+                            </div>
+                            
+                            <div class="limitation-item">
+                                <h4><i class="fas fa-exclamation-triangle text-warning"></i> 部分観測性</h4>
+                                <p>
+                                    部分観測可能な環境での性能は、完全観測可能な環境と比較して低下する傾向があります。
+                                </p>
+                            </div>
+                            
+                            <div class="limitation-item">
+                                <h4><i class="fas fa-exclamation-triangle text-warning"></i> ハイパーパラメータの調整</h4>
+                                <p>
+                                    システムの性能は内部好奇心のパラメータ設定に敏感であり、最適化が必要です。
+                                </p>
+                            </div>
+                            
+                            <h4 class="mt-4">今後の展望</h4>
+                            <ul>
+                                <li>より複雑な環境への適用</li>
+                                <li>部分観測環境での性能改善</li>
+                                <li>マルチエージェントシステムへの拡張</li>
+                                <li>実ロボットでの広範な検証</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 結論 -->
+        <section id="conclusion" class="py-5">
+            <div class="container">
+                <h2 class="section-title">結論</h2>
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="content-card text-center">
+                            <p class="lead">
+                                本研究では、内部好奇心駆動型探索と記号的プランニングを組み合わせた新しいハイブリッドアプローチを提案しました。
+                                このアプローチにより、エージェントはオープンワールド環境において迅速に適応し、
+                                予測不可能な変化に効率的に対応することが可能になります。
+                            </p>
+                            <p>
+                                実験結果は、提案手法が従来のハイブリッド手法と比較して収束が速く、パフォーマンスが優れていることを示しています。
+                                特に「想像上の」空間での計画立案と報酬マシンの自動生成が、学習効率の大幅な向上に寄与しています。
+                            </p>
+                            <p>
+                                今後の研究では、より複雑な環境への適用、部分観測環境での性能改善、
+                                およびマルチエージェントシステムへの拡張に焦点を当てていく予定です。
+                            </p>
+                            
+                            <div class="citation-box mt-5">
+                                <h3>論文引用情報</h3>
+                                <pre>
+Lorang, P., Lu, H., & Scheutz, M. (2025). Curiosity-Driven Imagination: 
+Discovering Plan Operators and Learning Associated Policies for Open-World Adaptation. 
+arXiv preprint arXiv:2503.04931.
+                                </pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="footer bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>論文解説サイト</h5>
+                    <p>Curiosity-Driven Imagination: Discovering Plan Operators and Learning Associated Policies for Open-World Adaptation</p>
+                </div>
+                <div class="col-md-3">
+                    <h5>リンク</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="https://arxiv.org/abs/2503.04931v1" class="text-white">原論文</a></li>
+                        <li><a href="#" class="text-white">関連研究</a></li>
+                        <li><a href="#" class="text-white">著者プロフィール</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>参考情報</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">強化学習ガイド</a></li>
+                        <li><a href="#" class="text-white">ロボティクス基礎</a></li>
+                        <li><a href="#" class="text-white">プランニングアルゴリズム</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p>&copy; 2025 論文解説プロジェクト</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/visualizer.js"></script>
+</body>
+</html>

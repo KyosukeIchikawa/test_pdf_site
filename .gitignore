@@ -1,0 +1,26 @@
+# .gitignore ファイル
+
+# PDF ファイルを除外
+*.pdf
+
+# macOS システムファイル
+.DS_Store
+
+# エディタの設定ファイル
+.vscode/
+.idea/
+
+# 一時ファイル
+*.tmp
+*~
+*.bak
+
+# ログファイル
+*.log
+
+# npm/nodejsの依存関係
+node_modules/
+package-lock.json
+
+# その他キャッシュファイル
+.cache/
