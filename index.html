@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Highlight.js -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/github.min.css">
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
     <!-- ヘッダー -->
@@ -36,6 +39,9 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#methodology">手法</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#formulas">数式解説</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#results">結果</a>
@@ -303,6 +309,166 @@
             </div>
         </section>
 
+        <!-- 数式解説セクション（新規追加） -->
+        <section id="formulas" class="py-5 bg-light">
+            <div class="container">
+                <h2 class="section-title">数式解説</h2>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="content-card formula-card">
+                            <h3>1. 記号的計画モデル</h3>
+                            <p>
+                                記号的計画では、環境をドメイン \(\sigma = \langle E, F, S, O \rangle\) として表現します。ここで：
+                            </p>
+                            <ul>
+                                <li>\(E = \{\varepsilon_1, \ldots, \varepsilon_{|E|}\}\) は環境内のエンティティ（オブジェクト）の集合</li>
+                                <li>\(F = \{f_1(\odot), \ldots, f_{|F|}(\odot)\}\)（\(\odot \subset E\)）は論理述語または数値述語の集合</li>
+                                <li>\(S = \{s_1, \ldots, s_{|S|}\}\) は環境の記号的状態の集合</li>
+                                <li>\(O = \{o_1, \ldots, o_{|O|}\}\) は既知のアクションオペレータの集合</li>
+                            </ul>
+                            
+                            <p>
+                                各オペレータ \(o_i \in O\) は前提条件 \(\psi_i\) と効果 \(\omega_i\) を持ち、\(\psi_i, \omega_i \in F\) です。
+                                計画タスクは STRIPS タスク \(T = (E, F, O, s_0, s_g)\) として記述され、\(s_0 \subset S\) は初期状態、\(s_g \subset S\) は目標状態です。
+                                計画の解はオペレータの順序付き列 \(P = \langle o_1, \ldots, o_{|P|} \rangle\) です。
+                            </p>
+
+                            <div class="formula-explanation mt-4">
+                                <h4>解説：記号的計画モデルとは？</h4>
+                                <p>
+                                    記号的計画モデルは、環境の状態や行動を記号（シンボル）で表現する方法です。例えるなら、ロボットが「部屋にはテーブルがある」「リンゴはテーブルの上にある」という知識を持ち、「リンゴを取る」というアクションが「リンゴがテーブル上にある」という条件（前提条件）を満たす場合に実行でき、その結果「リンゴを持っている」という効果が得られる、というような表現方法です。
+                                </p>
+                                <p>
+                                    この論文では、ロボットが未知の環境に対応するために、この記号的な表現を「想像上の空間」で計画立案に活用します。例えば、「オレンジを取る」というアクションを実際に行ったことがなくても、「リンゴを取る」という経験から類推して計画を立てることができるのです。
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="content-card formula-card mt-4">
+                            <h3>2. 強化学習と内部好奇心モジュール（ICM）</h3>
+                            <p>
+                                強化学習はマルコフ決定過程 \(M = \langle \tilde{S}, A, R, \tau, \gamma \rangle\) としてモデル化されます：
+                            </p>
+                            <ul>
+                                <li>\(\tilde{S}\) は亜記号的状態空間（連続的な状態表現）</li>
+                                <li>\(A\) は行動空間</li>
+                                <li>\(\tau(\tilde{s}_{t+1}|\tilde{s}_t, a_t)\) は遷移確率</li>
+                                <li>\(R(\tilde{s}, a)\) は報酬関数</li>
+                                <li>\(\gamma \in (0,1]\) は割引係数</li>
+                            </ul>
+                            
+                            <p>
+                                目標は期待累積報酬 \(G_t = \sum_{k=0}^{\infty}\gamma^k R_{t+k}\) を最大化する方策 \(\pi(a|\tilde{s})\) を学習することです。
+                            </p>
+                            
+                            <p>
+                                内部好奇心モジュール（ICM）は、エージェントの行動結果を予測することで探索を促進します。ICMの内部報酬は予測誤差に基づきます：
+                            </p>
+                            
+                            <div class="text-center my-4">
+                                <div class="formula-box">
+                                    \[ R_{intrinsic} = \|\hat{s}_{t+1} - \tilde{s}_{t+1}\|^2 \]
+                                </div>
+                            </div>
+                            
+                            <p>
+                                ここで、\(\hat{s}_{t+1}\) は予測状態、\(\tilde{s}_{t+1}\) は実際の状態です。これにより、エージェントは予測が難しい状態の探索を動機付けられます。
+                            </p>
+
+                            <div class="formula-explanation mt-4">
+                                <h4>解説：内部好奇心はどのように機能するのか？</h4>
+                                <p>
+                                    内部好奇心モジュール（ICM）は、人間の好奇心を模倣した仕組みです。例えば、子供が新しいおもちゃに興味を持つように、AIエージェントも「予測できない」または「新しい」状況に対して「好奇心」を持つように設計されています。
+                                </p>
+                                <p>
+                                    ICMは、「次に何が起こるか」を予測し、その予測と実際の結果との差（予測誤差）を内部報酬として使用します。予測が外れると大きな報酬が得られるため、エージェントは既知の領域より「驚き」がある未知の領域を探索するよう動機づけられます。これは、報酬が少ない環境でも効率的な探索を可能にします。
+                                </p>
+                                <p>
+                                    具体例：ロボットが部屋を探索している場合、既に何度も訪れた場所の状態変化は予測しやすくなり内部報酬が小さくなります。一方、新しい場所や未知のオブジェクトとの相互作用は予測が難しく、大きな内部報酬を生み出すため、ロボットはそれらを優先的に探索するようになります。
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="content-card formula-card mt-4">
+                            <h3>3. ハイブリッド計画と学習、報酬マシン</h3>
+                            <p>
+                                統合計画タスク（IPT）\(T = \langle T, M, d, e \rangle\) は、STRIPSタスク \(T\)、MDP \(M\)、検出関数 \(d: \tilde{S} \rightarrow S\)、および実行関数 \(e: O \rightarrow X_M\) から構成されます。実行者 \(x = \langle I, \pi, \beta \rangle \in X_M\) には開始指標 \(I\)、RL方策 \(\pi\)、および終了指標 \(\beta\) が含まれます。
+                            </p>
+                            
+                            <p>
+                                報酬マシンでは、MDPの報酬関数 \(R(\tau)\) を線形時相論理（LTL）の仕様 \(\phi\) に合わせます。これにより、より精密で適応的な報酬信号が可能になり、長期目標や複雑な時間的依存関係を捉えることができます。
+                            </p>
+                            
+                            <p>
+                                このアプローチでの総合的な報酬関数は以下のようになります：
+                            </p>
+                            
+                            <div class="text-center my-4">
+                                <div class="formula-box">
+                                    \[ r(s_t, s_{t+1}) = 
+                                    \begin{cases} 
+                                    R_m & \text{if } \phi(s_t, s_{t+1}) \text{ is satisfied} \\
+                                    R_{intrinsic} & \text{otherwise}
+                                    \end{cases} \]
+                                </div>
+                            </div>
+                            
+                            <p>
+                                ここで、\(R_m\) は報酬マシンによる報酬、\(R_{intrinsic}\) はICMからの内部好奇心報酬、\(\phi(s_t, s_{t+1})\) はLTL式です。
+                            </p>
+
+                            <div class="formula-explanation mt-4">
+                                <h4>解説：報酬マシンとはどのようなもの？</h4>
+                                <p>
+                                    報酬マシンは、複雑な目標を達成するための「道しるべ」のようなものです。通常の強化学習では、目標達成時にのみ報酬が与えられることが多く（「スパース報酬」と呼ばれます）、これでは学習が非常に遅くなります。報酬マシンは、目標への道のりを複数の小さなステップに分解し、各ステップの達成に報酬を与えることで学習を加速します。
+                                </p>
+                                <p>
+                                    この論文で使用されている線形時相論理（LTL）は、「最終的にA状態になり、その後B状態になる」というような時間的順序を持つ目標を表現できる論理体系です。例えば、「最終的に部屋に入り、次に物体を拾い、その後指定場所に置く」といった一連の行動を論理式として表現できます。
+                                </p>
+                                <p>
+                                    具体例：ロボットがアイテムを特定の場所に置くタスクの場合、報酬マシンは「部屋に入る」→「アイテムに近づく」→「アイテムを掴む」→「目標位置に移動」→「アイテムを置く」という一連のステップをLTL式で表現し、各ステップの達成に報酬を与えます。これにより、エージェントは最終目標だけでなく、中間目標も認識して効率的に学習できるようになります。
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="content-card formula-card mt-4">
+                            <h3>4. オペレータコスト更新メカニズム</h3>
+                            <p>
+                                オペレータのコスト更新メカニズムは、学習の進行に基づいてオペレータのコストを動的に調整します：
+                            </p>
+                            
+                            <div class="text-center my-4">
+                                <div class="formula-box">
+                                    \[ C_i^{new} = 
+                                    \begin{cases} 
+                                    C_i \cdot \frac{1}{\theta} & \text{if } \bar{R}_{T_e} > \bar{R}_{T_e-1} \\
+                                    C_i \cdot \theta & \text{if } \bar{R}_{T_e} \leq \bar{R}_{T_e-1}
+                                    \end{cases} \]
+                                </div>
+                            </div>
+                            
+                            <p>
+                                ここで、\(C_i = cost(o_i)\) はオペレータ \(o_i\) のコスト、\(\bar{R}_{T_e} = \frac{1}{T_e}\sum_{episode}R_{episode}\) はエピソードの平均報酬、\(\theta\) は調整パラメータです。
+                            </p>
+
+                            <div class="formula-explanation mt-4">
+                                <h4>解説：オペレータコスト更新の意味</h4>
+                                <p>
+                                    オペレータコスト更新は、計画のどの部分が「有望」で、どの部分が「困難」かを動的に調整するメカニズムです。これは、人間が問題解決の際に特定のアプローチが上手くいかないと判断した場合に別の方法を試すのに似ています。
+                                </p>
+                                <p>
+                                    具体的には、エージェントが学習を重ねる中で報酬が向上している場合（\(\bar{R}_{T_e} > \bar{R}_{T_e-1}\)）、現在の計画内のオペレータのコストを減らして（\(C_i \cdot \frac{1}{\theta}\)）、それらを「より望ましい」と評価します。反対に、報酬が向上していない場合は、オペレータのコストを増加させて（\(C_i \cdot \theta\)）、エージェントが他の可能性を探索するように促します。
+                                </p>
+                                <p>
+                                    例えば、ドアを通る経路がブロックされていることを学習した場合、「ドアを通る」オペレータのコストが増加し、計画の際に「窓を通る」などの別の経路が選択されやすくなります。これにより、エージェントは行き詰まりを回避し、柔軟にルートを変更できるようになります。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- 結果 -->
         <section id="results" class="py-5">
             <div class="container">
@@ -506,7 +672,7 @@ arXiv preprint arXiv:2503.04931.
     <footer class="footer bg-dark text-white py-4">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <divの class="col-md-6">
                     <h5>論文解説サイト</h5>
                     <p>Curiosity-Driven Imagination: Discovering Plan Operators and Learning Associated Policies for Open-World Adaptation</p>
                 </div>

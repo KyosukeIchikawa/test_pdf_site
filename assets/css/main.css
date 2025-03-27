@@ -9,6 +9,8 @@
   --text-color: #333333;
   --card-bg: #ffffff;
   --light-gray: #eeeeee;
+  --formula-bg: #f8f9fa;
+  --formula-border: #e9ecef;
 }
 
 body {
@@ -81,6 +83,57 @@ code, pre {
   padding: 25px;
   margin-bottom: 25px;
   overflow: hidden;
+}
+
+/* 数式スタイル */
+.formula-card {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+  padding: 25px;
+  margin-bottom: 25px;
+}
+
+.formula-box {
+  background-color: var(--formula-bg);
+  border: 1px solid var(--formula-border);
+  border-radius: 6px;
+  padding: 15px;
+  overflow-x: auto;
+}
+
+.formula-explanation {
+  background-color: rgba(46, 204, 113, 0.1);
+  border-left: 4px solid var(--secondary-color);
+  padding: 15px 20px;
+  border-radius: 0 6px 6px 0;
+}
+
+.formula-explanation h4 {
+  color: var(--secondary-color);
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.formula-card h3 {
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--light-gray);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.formula-card ul {
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+.formula-card ul li {
+  margin-bottom: 8px;
+}
+
+/* 数式のMathJax調整 */
+.MathJax {
+  font-size: 110% !important;
 }
 
 /* 主要ポイントリスト */
@@ -265,6 +318,15 @@ code, pre {
   
   .step {
     width: 100%;
+  }
+
+  .formula-box {
+    padding: 10px;
+    font-size: 90%;
+  }
+  
+  .formula-explanation {
+    padding: 12px;
   }
 }
 
